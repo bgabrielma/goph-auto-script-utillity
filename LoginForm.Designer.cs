@@ -83,7 +83,7 @@
             this.nickname.MaxLength = 32767;
             this.nickname.Name = "nickname";
             this.nickname.PasswordChar = '\0';
-            this.nickname.PromptText = "Insira seu nickname";
+            this.nickname.WaterMark = "Insira seu nickname";
             this.nickname.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.nickname.SelectedText = "";
             this.nickname.SelectionLength = 0;
@@ -187,7 +187,6 @@
             this.Text = "Departamento de Operacões Policiais";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.TopMost = true;
-            this.Leave += new System.EventHandler(this.LoginForm_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

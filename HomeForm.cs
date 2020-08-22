@@ -13,9 +13,15 @@ namespace DOPScript
 {
     public partial class HomeForm : MetroForm
     {
-        public HomeForm()
+        private Bitmap habboImage;
+
+        public HomeForm(Bitmap habboImage)
         {
             InitializeComponent();
+            this.habboImage = habboImage;
+
+            // Update habbo image component
+            pictureHabboImage.Image = habboImage;
         }
 
         private void HomeForm_Load(object sender, EventArgs e)
@@ -24,7 +30,8 @@ namespace DOPScript
         }
         private void configure()
         {
-            Text = $"Home - {Settings.Default.nickname}";
+            Text = $"DOP | Militar {Settings.Default.nickname}";
+            nickname.Text = Settings.Default.nickname;
         }
     }
 }

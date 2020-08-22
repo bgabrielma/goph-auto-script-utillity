@@ -21,6 +21,7 @@ namespace DOPScript
     public partial class LoginForm : MetroForm
     {
         protected WebClient webClient;
+        Bitmap habboImage = null;
 
         public LoginForm()
         {
@@ -36,16 +37,16 @@ namespace DOPScript
             {
                 Invoke((MethodInvoker)delegate
                 {
+                    buttonHome.Enabled = true;
+                    loader.Visible = false;
+
                     if (value.Result)
                     {
                         openHome();
                     } else
                     {
-                        MetroMessageBox.Show(this, "O utilizador em questão é inválido. Tente novamente", "Erro ao tentar entrar", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                        MetroMessageBox.Show(this, "O utilizador em questão é inválido. Tente novamente", "Erro ao tentar entrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
-                    buttonHome.Enabled = true;
-                    loader.Visible = false;
                 });
             });
         }
@@ -54,11 +55,6 @@ namespace DOPScript
         {
             var input = (MetroTextBox)sender;
             buttonHome.Enabled = !string.IsNullOrEmpty(input.Text);
-        }
-
-        private void LoginForm_Leave(object sender, EventArgs e)
-        {
-            Dispose();
         }
 
         private void setParams()
@@ -82,7 +78,7 @@ namespace DOPScript
                     var blobImage = $"https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=gif&user={nickname.Text}&action=crr=6&direction=2&head_direction=2&gesture=std&size=l&headonly=1";
 
                     Stream webOperations = webClient.OpenRead(blobImage);
-                    Bitmap habboImager = new Bitmap(webOperations);
+                    habboImage = new Bitmap(webOperations);
                 }
                 catch (WebException e)
                 {
@@ -101,10 +97,17 @@ namespace DOPScript
             // Set Params
             setParams();
 
-            // Trigger Leave's Form event
+            // Hide LoginForm
             Hide();
 
-            new HomeForm().ShowDialog();
+            // Dispose Login Form
+            new HomeForm(habboImage).ShowDialog();
+            Task.Run(() => {
+                Invoke((MethodInvoker)delegate
+                {
+                    Dispose();
+                });
+            });
         }
     }
 }
