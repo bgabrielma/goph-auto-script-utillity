@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeForm));
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richScriptBoxContainer = new System.Windows.Forms.RichTextBox();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.pictureHabboImage = new System.Windows.Forms.PictureBox();
             this.nickname = new MetroFramework.Controls.MetroTile();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.metroComboBox1 = new MetroFramework.Controls.MetroComboBox();
+            this.metroTopicComboBox = new MetroFramework.Controls.MetroComboBox();
             this.metroTile3 = new MetroFramework.Controls.MetroTile();
             this.metroTile4 = new MetroFramework.Controls.MetroTile();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
@@ -45,7 +45,9 @@
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroPanel5 = new MetroFramework.Controls.MetroPanel();
-            this.metroTile2 = new MetroFramework.Controls.MetroTile();
+            this.uploadScript = new MetroFramework.Controls.MetroTile();
+            this.fileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.labelVersion = new MetroFramework.Controls.MetroLabel();
             this.metroPanel1.SuspendLayout();
             this.metroPanel3.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -54,24 +56,24 @@
             this.metroPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // richScriptBoxContainer
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.richTextBox1.ForeColor = System.Drawing.Color.White;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 18);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBox1.Size = new System.Drawing.Size(633, 498);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            this.richScriptBoxContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
+            this.richScriptBoxContainer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richScriptBoxContainer.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.richScriptBoxContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.richScriptBoxContainer.ForeColor = System.Drawing.Color.White;
+            this.richScriptBoxContainer.Location = new System.Drawing.Point(0, 18);
+            this.richScriptBoxContainer.Name = "richScriptBoxContainer";
+            this.richScriptBoxContainer.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.richScriptBoxContainer.Size = new System.Drawing.Size(633, 498);
+            this.richScriptBoxContainer.TabIndex = 0;
+            this.richScriptBoxContainer.Text = "";
             // 
             // metroPanel1
             // 
             this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(196)))), ((int)(((byte)(37)))));
-            this.metroPanel1.Controls.Add(this.richTextBox1);
+            this.metroPanel1.Controls.Add(this.richScriptBoxContainer);
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel1.HorizontalScrollbarSize = 10;
@@ -93,7 +95,7 @@
             this.metroPanel3.HorizontalScrollbarBarColor = true;
             this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel3.HorizontalScrollbarSize = 10;
-            this.metroPanel3.Location = new System.Drawing.Point(920, 39);
+            this.metroPanel3.Location = new System.Drawing.Point(951, 79);
             this.metroPanel3.Name = "metroPanel3";
             this.metroPanel3.Size = new System.Drawing.Size(162, 211);
             this.metroPanel3.Style = MetroFramework.MetroColorStyle.Yellow;
@@ -155,31 +157,25 @@
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel1.Location = new System.Drawing.Point(722, 256);
+            this.metroLabel1.Location = new System.Drawing.Point(698, 265);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(76, 25);
             this.metroLabel1.TabIndex = 6;
             this.metroLabel1.Text = "Tópicos";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
-            // metroComboBox1
+            // metroTopicComboBox
             // 
-            this.metroComboBox1.FormattingEnabled = true;
-            this.metroComboBox1.ItemHeight = 23;
-            this.metroComboBox1.Items.AddRange(new object[] {
-            "I - HISTÓRIA DA DOP",
-            "II - PAGAMENTOS & PROMOÇÕES NA DOP",
-            "III - 3 REQUISITOS BÁSICOS",
-            "IV - ATENDIMENTO NA RECEPÇÃO",
-            "IV - SALAS DE CONTROLE E CONCLUSÃO"});
-            this.metroComboBox1.Location = new System.Drawing.Point(722, 295);
-            this.metroComboBox1.Name = "metroComboBox1";
-            this.metroComboBox1.Size = new System.Drawing.Size(360, 29);
-            this.metroComboBox1.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.metroComboBox1.TabIndex = 7;
-            this.metroComboBox1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.metroComboBox1.UseSelectable = true;
-            this.metroComboBox1.UseStyleColors = true;
+            this.metroTopicComboBox.FormattingEnabled = true;
+            this.metroTopicComboBox.ItemHeight = 23;
+            this.metroTopicComboBox.Location = new System.Drawing.Point(698, 314);
+            this.metroTopicComboBox.Name = "metroTopicComboBox";
+            this.metroTopicComboBox.Size = new System.Drawing.Size(415, 29);
+            this.metroTopicComboBox.Style = MetroFramework.MetroColorStyle.Yellow;
+            this.metroTopicComboBox.TabIndex = 7;
+            this.metroTopicComboBox.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroTopicComboBox.UseSelectable = true;
+            this.metroTopicComboBox.UseStyleColors = true;
             // 
             // metroTile3
             // 
@@ -260,7 +256,7 @@
             // 
             this.richTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
             this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold);
             this.richTextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(196)))), ((int)(((byte)(37)))));
             this.richTextBox2.Location = new System.Drawing.Point(15, 48);
             this.richTextBox2.Name = "richTextBox2";
@@ -300,40 +296,57 @@
             this.metroPanel5.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel5.VerticalScrollbarSize = 10;
             // 
-            // metroTile2
+            // uploadScript
             // 
-            this.metroTile2.ActiveControl = null;
-            this.metroTile2.Location = new System.Drawing.Point(698, 39);
-            this.metroTile2.Name = "metroTile2";
-            this.metroTile2.Size = new System.Drawing.Size(87, 63);
-            this.metroTile2.Style = MetroFramework.MetroColorStyle.Silver;
-            this.metroTile2.TabIndex = 12;
-            this.metroTile2.TileImage = ((System.Drawing.Image)(resources.GetObject("metroTile2.TileImage")));
-            this.metroTile2.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.metroTile2.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
-            this.metroTile2.UseSelectable = true;
-            this.metroTile2.UseStyleColors = true;
-            this.metroTile2.UseTileImage = true;
+            this.uploadScript.ActiveControl = null;
+            this.uploadScript.Location = new System.Drawing.Point(698, 79);
+            this.uploadScript.Name = "uploadScript";
+            this.uploadScript.Size = new System.Drawing.Size(133, 108);
+            this.uploadScript.Style = MetroFramework.MetroColorStyle.Silver;
+            this.uploadScript.TabIndex = 12;
+            this.uploadScript.TileImage = ((System.Drawing.Image)(resources.GetObject("uploadScript.TileImage")));
+            this.uploadScript.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uploadScript.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.uploadScript.UseSelectable = true;
+            this.uploadScript.UseStyleColors = true;
+            this.uploadScript.UseTileImage = true;
+            this.uploadScript.Click += new System.EventHandler(this.uploadScript_Click);
+            // 
+            // fileDialog
+            // 
+            this.fileDialog.Filter = "|*.txt";
+            // 
+            // labelVersion
+            // 
+            this.labelVersion.AutoSize = true;
+            this.labelVersion.Location = new System.Drawing.Point(1071, 599);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(42, 19);
+            this.labelVersion.TabIndex = 13;
+            this.labelVersion.Text = "v0.0.0";
+            this.labelVersion.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1136, 628);
-            this.Controls.Add(this.metroTile2);
+            this.Controls.Add(this.labelVersion);
+            this.Controls.Add(this.uploadScript);
             this.Controls.Add(this.metroPanel5);
             this.Controls.Add(this.metroTile4);
             this.Controls.Add(this.metroTile3);
-            this.Controls.Add(this.metroComboBox1);
+            this.Controls.Add(this.metroTopicComboBox);
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.metroPanel3);
             this.Controls.Add(this.metroPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "HomeForm";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
             this.Style = MetroFramework.MetroColorStyle.Yellow;
-            this.Text = "Home";
+            this.Text = "Script | a aguadar...";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.Load += new System.EventHandler(this.HomeForm_Load);
             this.metroPanel1.ResumeLayout(false);
@@ -351,14 +364,14 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richScriptBoxContainer;
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroPanel metroPanel3;
         private MetroFramework.Controls.MetroPanel metroPanel2;
         private System.Windows.Forms.PictureBox pictureHabboImage;
         private MetroFramework.Controls.MetroTile nickname;
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroComboBox metroComboBox1;
+        private MetroFramework.Controls.MetroComboBox metroTopicComboBox;
         private MetroFramework.Controls.MetroTile metroTile3;
         private MetroFramework.Controls.MetroTile metroTile4;
         private MetroFramework.Controls.MetroPanel metroPanel4;
@@ -367,6 +380,8 @@
         private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private MetroFramework.Controls.MetroPanel metroPanel5;
-        private MetroFramework.Controls.MetroTile metroTile2;
+        private MetroFramework.Controls.MetroTile uploadScript;
+        private System.Windows.Forms.OpenFileDialog fileDialog;
+        private MetroFramework.Controls.MetroLabel labelVersion;
     }
 }

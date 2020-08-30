@@ -21,11 +21,11 @@ namespace DOPScript
     public partial class LoginForm : MetroForm
     {
         protected WebClient webClient;
-        Bitmap habboImage = null;
 
         public LoginForm()
         {
             InitializeComponent();
+            labelVersion.Text = $"v{Utils.getProgramAssembleVersion()}";
         } 
 
         private async void buttonHome_Click(object sender, EventArgs e)
@@ -33,16 +33,16 @@ namespace DOPScript
             buttonHome.Enabled = false;
             loader.Visible = true;
 
-            await getUserImage().ContinueWith((value) =>
+            await Utils.getHabboLogoImage(nickname.Text).ContinueWith((value) =>
             {
                 Invoke((MethodInvoker)delegate
                 {
                     buttonHome.Enabled = true;
                     loader.Visible = false;
 
-                    if (value.Result)
+                    if (value.Result.Item2)
                     {
-                        openHome();
+                        openHome(value.Result.Item1);
                     } else
                     {
                         MetroMessageBox.Show(this, "O utilizador em questão é inválido. Tente novamente", "Erro ao tentar entrar", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -63,35 +63,7 @@ namespace DOPScript
             Settings.Default.Save();
         }
 
-        private async Task<bool> getUserImage()
-        {
-            return await Task.Run(() =>
-            {
-                bool isValid = true;
-
-                webClient = new WebClient();
-                webClient.Headers
-                    .Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)");
-
-                try
-                {
-                    var blobImage = $"https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=gif&user={nickname.Text}&action=crr=6&direction=2&head_direction=2&gesture=std&size=l&headonly=1";
-
-                    Stream webOperations = webClient.OpenRead(blobImage);
-                    habboImage = new Bitmap(webOperations);
-                }
-                catch (WebException e)
-                {
-                    if (e.Status == WebExceptionStatus.ProtocolError && (((HttpWebResponse)e.Response).StatusCode == HttpStatusCode.NotFound))
-                    {
-                        isValid = false;
-                    }
-                }
-                return isValid;
-            });
-        }
-
-        public void openHome()
+        public void openHome(Bitmap _habboImage = null)
         {
 
             // Set Params
@@ -101,7 +73,7 @@ namespace DOPScript
             Hide();
 
             // Dispose Login Form
-            new HomeForm(habboImage).ShowDialog();
+            new HomeForm(_habboImage).ShowDialog();
             Task.Run(() => {
                 Invoke((MethodInvoker)delegate
                 {

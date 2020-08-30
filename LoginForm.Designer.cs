@@ -37,6 +37,7 @@
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.loader = new MetroFramework.Controls.MetroProgressSpinner();
+            this.labelVersion = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,7 +84,7 @@
             this.nickname.MaxLength = 32767;
             this.nickname.Name = "nickname";
             this.nickname.PasswordChar = '\0';
-            this.nickname.WaterMark = "Insira seu nickname";
+            this.nickname.PromptText = "Insira seu nickname";
             this.nickname.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.nickname.SelectedText = "";
             this.nickname.SelectionLength = 0;
@@ -120,7 +121,7 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(800, 458);
+            this.metroLabel2.Location = new System.Drawing.Point(788, 438);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(91, 19);
             this.metroLabel2.TabIndex = 4;
@@ -163,11 +164,22 @@
             this.loader.Value = 39;
             this.loader.Visible = false;
             // 
+            // labelVersion
+            // 
+            this.labelVersion.AutoSize = true;
+            this.labelVersion.Location = new System.Drawing.Point(812, 457);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(42, 19);
+            this.labelVersion.TabIndex = 8;
+            this.labelVersion.Text = "v0.0.0";
+            this.labelVersion.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(905, 500);
+            this.Controls.Add(this.labelVersion);
             this.Controls.Add(this.loader);
             this.Controls.Add(this.metroLabel4);
             this.Controls.Add(this.metroLabel3);
@@ -177,6 +189,7 @@
             this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Roboto", 10F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "LoginForm";
@@ -203,6 +216,7 @@
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroProgressSpinner loader;
+        private MetroFramework.Controls.MetroLabel labelVersion;
     }
 }
 
