@@ -176,7 +176,7 @@ namespace DOPScript
         {
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                this.prepareScript(new StreamReader(fileDialog.FileName, Encoding.GetEncoding("utf-8")));
+                this.prepareScript(new StreamReader(fileDialog.FileName, Encoding.GetEncoding("iso-8859-1")));
             }
         }
 
