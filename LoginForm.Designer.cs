@@ -91,7 +91,7 @@
             this.nickname.SelectionStart = 0;
             this.nickname.ShortcutsEnabled = true;
             this.nickname.Size = new System.Drawing.Size(278, 30);
-            this.nickname.Style = MetroFramework.MetroColorStyle.Yellow;
+            this.nickname.Style = MetroFramework.MetroColorStyle.Blue;
             this.nickname.TabIndex = 2;
             this.nickname.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.nickname.UseSelectable = true;
@@ -108,7 +108,7 @@
             this.buttonHome.Location = new System.Drawing.Point(354, 374);
             this.buttonHome.Name = "buttonHome";
             this.buttonHome.Size = new System.Drawing.Size(207, 65);
-            this.buttonHome.Style = MetroFramework.MetroColorStyle.Yellow;
+            this.buttonHome.Style = MetroFramework.MetroColorStyle.Blue;
             this.buttonHome.TabIndex = 3;
             this.buttonHome.Text = "Entrar agora";
             this.buttonHome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -157,7 +157,7 @@
             this.loader.Name = "loader";
             this.loader.Size = new System.Drawing.Size(32, 32);
             this.loader.Speed = 2.5F;
-            this.loader.Style = MetroFramework.MetroColorStyle.Yellow;
+            this.loader.Style = MetroFramework.MetroColorStyle.Blue;
             this.loader.TabIndex = 7;
             this.loader.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.loader.UseSelectable = true;
@@ -196,7 +196,6 @@
             this.Padding = new System.Windows.Forms.Padding(23, 69, 23, 23);
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
-            this.Style = MetroFramework.MetroColorStyle.Yellow;
             this.Text = "Departamento de Operacões Policiais";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.TopMost = true;

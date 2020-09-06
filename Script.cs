@@ -12,6 +12,8 @@ namespace DOPScript
 
         public static int LINE_COUNT = 0;
         public static int TOPIC_COUNT = 0;
+        public static int CURRENT_LINE = 0;
+        public static bool SHOULD_SEND_TITLE_PHRASE = true;
 
         public static void createTopic(ScriptTopic scriptTopicInCreation)
         {
@@ -29,6 +31,8 @@ namespace DOPScript
             scriptTopics.Clear();
             TOPIC_COUNT = 0;
             LINE_COUNT = 0;
+            CURRENT_LINE = 0;
+            SHOULD_SEND_TITLE_PHRASE = true;
         }
 
         public class ScriptTopic
