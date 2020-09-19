@@ -13,6 +13,7 @@ namespace DOPScript.config
         public static readonly Regex COMMENT_PATTERN = new Regex(@"^\/\/");
         public static readonly Regex LINE_PATTERN = new Regex(@"^>\s");  
         public static readonly Regex TOPIC_PATTERN = new Regex(@"^\[topico\]\s");
+        public static readonly Regex STOP_PATTERN = new Regex(@"^\[parar]");
         public static readonly Regex IDENTIFICATION_PATTERN = new Regex(@"^\[script]\s");
         public static readonly Regex PAUSE_PATTERN = new Regex(@"^\[pause\]"); // ?
 

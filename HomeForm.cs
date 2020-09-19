@@ -80,7 +80,7 @@ namespace DOPScript
                 }
                 else if (ScriptAttributes.LINE_PATTERN.IsMatch(contentLine))
                 {
-                    scriptTopic.addLine(contentLine.Replace(">", "").Trim());
+                    scriptTopic.addLine(contentLine.Replace(">", "").Replace("[instructor]", Settings.Default.nickname).Trim());
                 }
                 else if (ScriptAttributes.IDENTIFICATION_PATTERN.IsMatch(contentLine))
                 {
@@ -138,24 +138,26 @@ namespace DOPScript
             richScriptBoxContainer.Text = "";
             if (metroTopicComboBox.Items.Count > 0) 
             { 
-                Script.ScriptTopic currentScriptTopic = Script.scriptTopics[metroTopicComboBox.SelectedIndex];
-                if (currentScriptTopic != null)
-                {
-                    addLineToRichScriptBox($"\n{currentScriptTopic.topicTitle}");
-
-                    foreach(Script.ScriptTopic.ScriptLine scriptLine in currentScriptTopic.getTopicLines())
+                if (metroTopicComboBox.SelectedIndex != -1) { 
+                    Script.ScriptTopic currentScriptTopic = Script.scriptTopics[metroTopicComboBox.SelectedIndex];
+                    if (currentScriptTopic != null)
                     {
-                        addLineToRichScriptBox($"\n{scriptLine.getLine()}");
+                        addLineToRichScriptBox($"\n{currentScriptTopic.topicTitle}");
+
+                        foreach(Script.ScriptTopic.ScriptLine scriptLine in currentScriptTopic.getTopicLines())
+                        {
+                            addLineToRichScriptBox($"\n{(ScriptAttributes.STOP_PATTERN.IsMatch(scriptLine.getLine()) ? "[Pausa agendada]" : scriptLine.getLine())}");
+                        }
                     }
+                    updateProgress(0);
                 }
             }
-            updateProgress();
         }
 
-        public void updateProgress()
+        public void updateProgress(int initialValue = 1)
         {
             Script.ScriptTopic currentScriptTopic = Script.scriptTopics[metroTopicComboBox.SelectedIndex];
-            labelProgress.Text = $"{((100 / currentScriptTopic.getTopicLines().Count) * Script.CURRENT_LINE)} %";
+            labelProgress.Text = $"{((100 / currentScriptTopic.getTopicLines().Count) * Script.CURRENT_LINE * initialValue)} %";
         }
 
         public void handleButtonsActionState(string mode = "disabled")
@@ -176,13 +178,15 @@ namespace DOPScript
         {
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
-                this.prepareScript(new StreamReader(fileDialog.FileName, Encoding.GetEncoding("iso-8859-1")));
+                this.prepareScript(new StreamReader(fileDialog.FileName, Encoding.UTF8));
             }
         }
 
         private void metroTopicComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             configScriptPainelInformations();
+            Script.CURRENT_LINE = 0;
+            Script.SHOULD_SEND_TITLE_PHRASE = true;
             timerScript.Interval = (int)currentScriptVelocityState * 1000;
             fillRichScriptBox();
         }
@@ -252,8 +256,10 @@ namespace DOPScript
             Script.ScriptTopic currentScriptTopic = Script.scriptTopics[metroTopicComboBox.SelectedIndex];
             string _currentLine = string.Empty;
 
-            if (Script.CURRENT_LINE <= currentScriptTopic.getTopicLines().Count - 1) 
+            if (Script.CURRENT_LINE <= currentScriptTopic.getTopicLines().Count - 1)
             {
+                _currentLine = currentScriptTopic.getTopicLines()[Script.CURRENT_LINE].getLine();
+
                 if (Script.SHOULD_SEND_TITLE_PHRASE)
                 {
                     _currentLine = currentScriptTopic.topicTitle;
@@ -261,15 +267,22 @@ namespace DOPScript
                 }
                 else
                 {
-                    _currentLine = currentScriptTopic.getTopicLines()[Script.CURRENT_LINE].getLine();
-
                     // Increment script current line
                     Script.CURRENT_LINE++;
                 }
 
-                SendKeys.Send(Utils.formatSpecialLineCharacters(_currentLine));
-                SendKeys.Send("+{Enter}");
-                
+                if (ScriptAttributes.STOP_PATTERN.IsMatch(_currentLine))
+                {
+                    btnPause.PerformClick();
+                    WindowState = FormWindowState.Normal;
+                    return;
+                } 
+                else 
+                { 
+                    SendKeys.Send(Utils.formatSpecialLineCharacters(_currentLine));
+                    SendKeys.Send("+{Enter}");
+                }
+
                 // Update script topic progress
                 updateProgress();
             } 
