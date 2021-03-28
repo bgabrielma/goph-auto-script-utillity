@@ -55,6 +55,7 @@
             this.scriptVelocity = new MetroFramework.Controls.MetroTextBox();
             this.timerScript = new System.Windows.Forms.Timer(this.components);
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.metroPanel1.SuspendLayout();
             this.metroPanel3.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -377,7 +378,7 @@
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel4.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel4.Location = new System.Drawing.Point(698, 186);
+            this.metroLabel4.Location = new System.Drawing.Point(698, 182);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(205, 25);
             this.metroLabel4.TabIndex = 14;
@@ -400,7 +401,7 @@
             this.scriptVelocity.CustomButton.Visible = false;
             this.scriptVelocity.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.scriptVelocity.Lines = new string[0];
-            this.scriptVelocity.Location = new System.Drawing.Point(700, 226);
+            this.scriptVelocity.Location = new System.Drawing.Point(700, 216);
             this.scriptVelocity.MaxLength = 32767;
             this.scriptVelocity.Name = "scriptVelocity";
             this.scriptVelocity.PasswordChar = '\0';
@@ -430,19 +431,33 @@
             this.metroLabel6.AutoSize = true;
             this.metroLabel6.FontSize = MetroFramework.MetroLabelSize.Small;
             this.metroLabel6.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel6.Location = new System.Drawing.Point(780, 229);
+            this.metroLabel6.Location = new System.Drawing.Point(780, 219);
             this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(112, 15);
+            this.metroLabel6.Size = new System.Drawing.Size(118, 15);
             this.metroLabel6.TabIndex = 16;
-            this.metroLabel6.Text = "De 4 até 8 segundos";
+            this.metroLabel6.Text = "De 4 até 10 segundos";
             this.metroLabel6.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroLabel6.WrapToLine = true;
+            // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel7.Location = new System.Drawing.Point(780, 253);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(114, 15);
+            this.metroLabel7.TabIndex = 18;
+            this.metroLabel7.Text = "Tecla de Pausa (ESC)";
+            this.metroLabel7.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel7.WrapToLine = true;
             // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1136, 628);
+            this.Controls.Add(this.metroLabel7);
             this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.scriptVelocity);
             this.Controls.Add(this.metroLabel4);
@@ -462,6 +477,7 @@
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
             this.Text = "Script | a aguardar...";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HomeForm_FormClosed);
             this.Load += new System.EventHandler(this.HomeForm_Load);
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel3.ResumeLayout(false);
@@ -503,5 +519,6 @@
         private MetroFramework.Controls.MetroLabel labelTopic;
         private System.Windows.Forms.Timer timerScript;
         private MetroFramework.Controls.MetroLabel metroLabel6;
+        private MetroFramework.Controls.MetroLabel metroLabel7;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DOPScript.config;
 using DOPScript.Properties;
+using Gma.System.MouseKeyHook;
 using MetroFramework;
 using MetroFramework.Controls;
 using MetroFramework.Forms;
@@ -20,6 +21,7 @@ namespace DOPScript
     {
         private Bitmap habboImage;
         private float currentScriptVelocityState = Utils.MIN_SPEED;
+        private IKeyboardMouseEvents scriptPausePerformActionGlobalHook;
 
         public HomeForm(Bitmap habboImage)
         {
@@ -31,6 +33,26 @@ namespace DOPScript
 
             labelVersion.Text = $"v{Utils.getProgramAssembleVersion()}";
         }
+        public void SubscribeScriptPausePerformAction()
+        {
+            scriptPausePerformActionGlobalHook = Hook.GlobalEvents();
+            scriptPausePerformActionGlobalHook.KeyPress += onScriptPausePerformAction;
+        }
+        public void onScriptPausePerformAction(object sender, KeyPressEventArgs e)
+        {
+            // ESC ASCII
+            if (e.KeyChar == 27)
+            {
+                btnPause.PerformClick();
+            }
+        }
+        public void UnsubscribeScriptPausePerformAction()
+        {
+            scriptPausePerformActionGlobalHook.KeyPress -= onScriptPausePerformAction;
+
+            //It is recommened to dispose it
+            scriptPausePerformActionGlobalHook.Dispose();
+        }
 
         private void HomeForm_Load(object sender, EventArgs e)
         {
@@ -39,6 +61,7 @@ namespace DOPScript
         private void configure()
         {
             nickname.Text = Settings.Default.nickname;
+            SubscribeScriptPausePerformAction();
         }
         private void Reset()
         {
@@ -157,7 +180,7 @@ namespace DOPScript
         public void updateProgress(int initialValue = 1)
         {
             Script.ScriptTopic currentScriptTopic = Script.scriptTopics[metroTopicComboBox.SelectedIndex];
-            labelProgress.Text = $"{((100 / currentScriptTopic.getTopicLines().Count) * Script.CURRENT_LINE * initialValue)} %";
+            labelProgress.Text = $"{initialValue * Math.Floor((double)(Script.CURRENT_LINE) / currentScriptTopic.getTopicLines().Count * 100) } %";
         }
 
         public void handleButtonsActionState(string mode = "disabled")
@@ -302,5 +325,6 @@ namespace DOPScript
             sendMessage();
         }
 
+        private void HomeForm_FormClosed(object sender, FormClosedEventArgs e) => UnsubscribeScriptPausePerformAction();
     }
 }
