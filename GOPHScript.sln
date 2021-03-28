@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DOPScript", "DOPScript.csproj", "{6346CBF1-7A19-45C0-9153-DBC6FBBD1AB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GOPHScript", "GOPHScript.csproj", "{6346CBF1-7A19-45C0-9153-DBC6FBBD1AB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

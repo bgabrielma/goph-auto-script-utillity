@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
-using DOPScript.Properties;
+using GOPHScript.Properties;
 using System.Net;
 using System.IO;
 using MetroFramework;
@@ -80,6 +80,11 @@ namespace DOPScript
                     Dispose();
                 });
             });
+        }
+
+        private void labelVersion_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

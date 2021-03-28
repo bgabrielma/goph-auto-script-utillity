@@ -55,6 +55,7 @@
             this.scriptVelocity = new MetroFramework.Controls.MetroTextBox();
             this.timerScript = new System.Windows.Forms.Timer(this.components);
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.metroPanel1.SuspendLayout();
             this.metroPanel3.SuspendLayout();
             this.metroPanel2.SuspendLayout();
@@ -80,7 +81,7 @@
             // 
             // metroPanel1
             // 
-            this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.metroPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(196)))), ((int)(((byte)(20)))));
             this.metroPanel1.Controls.Add(this.richScriptBoxContainer);
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
@@ -98,7 +99,7 @@
             // 
             // metroPanel3
             // 
-            this.metroPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.metroPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(196)))), ((int)(((byte)(20)))));
             this.metroPanel3.Controls.Add(this.metroPanel2);
             this.metroPanel3.HorizontalScrollbarBarColor = true;
             this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
@@ -151,7 +152,7 @@
             this.nickname.Location = new System.Drawing.Point(23, 133);
             this.nickname.Name = "nickname";
             this.nickname.Size = new System.Drawing.Size(119, 47);
-            this.nickname.Style = MetroFramework.MetroColorStyle.Blue;
+            this.nickname.Style = MetroFramework.MetroColorStyle.Yellow;
             this.nickname.TabIndex = 2;
             this.nickname.Text = "Xx.Mitomasfsd.Xxxx";
             this.nickname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -168,9 +169,11 @@
             this.metroLabel1.Location = new System.Drawing.Point(698, 274);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(76, 25);
+            this.metroLabel1.Style = MetroFramework.MetroColorStyle.Yellow;
             this.metroLabel1.TabIndex = 6;
             this.metroLabel1.Text = "Tópicos";
             this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel1.Click += new System.EventHandler(this.metroLabel1_Click);
             // 
             // metroTopicComboBox
             // 
@@ -179,7 +182,7 @@
             this.metroTopicComboBox.Location = new System.Drawing.Point(698, 314);
             this.metroTopicComboBox.Name = "metroTopicComboBox";
             this.metroTopicComboBox.Size = new System.Drawing.Size(415, 29);
-            this.metroTopicComboBox.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroTopicComboBox.Style = MetroFramework.MetroColorStyle.Yellow;
             this.metroTopicComboBox.TabIndex = 7;
             this.metroTopicComboBox.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroTopicComboBox.UseSelectable = true;
@@ -195,6 +198,7 @@
             this.btnStart.Size = new System.Drawing.Size(111, 88);
             this.btnStart.Style = MetroFramework.MetroColorStyle.Silver;
             this.btnStart.TabIndex = 8;
+            this.btnStart.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnStart.TileImage = ((System.Drawing.Image)(resources.GetObject("btnStart.TileImage")));
             this.btnStart.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnStart.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
@@ -212,6 +216,7 @@
             this.btnPause.Size = new System.Drawing.Size(111, 92);
             this.btnPause.Style = MetroFramework.MetroColorStyle.Silver;
             this.btnPause.TabIndex = 9;
+            this.btnPause.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnPause.TileImage = ((System.Drawing.Image)(resources.GetObject("btnPause.TileImage")));
             this.btnPause.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnPause.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
@@ -243,29 +248,33 @@
             // 
             // labelProgress
             // 
+            this.labelProgress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
             this.labelProgress.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.labelProgress.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.labelProgress.Location = new System.Drawing.Point(146, 156);
             this.labelProgress.Name = "labelProgress";
             this.labelProgress.Size = new System.Drawing.Size(92, 36);
-            this.labelProgress.Style = MetroFramework.MetroColorStyle.Blue;
+            this.labelProgress.Style = MetroFramework.MetroColorStyle.Yellow;
             this.labelProgress.TabIndex = 8;
             this.labelProgress.Text = "--";
             this.labelProgress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelProgress.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.labelProgress.UseCustomBackColor = true;
             this.labelProgress.UseStyleColors = true;
             // 
             // labelTopic
             // 
+            this.labelTopic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
             this.labelTopic.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.labelTopic.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.labelTopic.Location = new System.Drawing.Point(19, 156);
             this.labelTopic.Name = "labelTopic";
             this.labelTopic.Size = new System.Drawing.Size(68, 36);
-            this.labelTopic.Style = MetroFramework.MetroColorStyle.Blue;
+            this.labelTopic.Style = MetroFramework.MetroColorStyle.Yellow;
             this.labelTopic.TabIndex = 0;
             this.labelTopic.Text = "--";
             this.labelTopic.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelTopic.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.labelTopic.UseCustomBackColor = true;
             this.labelTopic.UseStyleColors = true;
             // 
@@ -302,7 +311,7 @@
             this.richTextTopicoAtual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(52)))));
             this.richTextTopicoAtual.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextTopicoAtual.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.75F, System.Drawing.FontStyle.Bold);
-            this.richTextTopicoAtual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.richTextTopicoAtual.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(196)))), ((int)(((byte)(20)))));
             this.richTextTopicoAtual.Location = new System.Drawing.Point(19, 61);
             this.richTextTopicoAtual.Name = "richTextTopicoAtual";
             this.richTextTopicoAtual.ReadOnly = true;
@@ -319,6 +328,7 @@
             this.metroLabel2.Location = new System.Drawing.Point(19, 22);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(116, 25);
+            this.metroLabel2.Style = MetroFramework.MetroColorStyle.Silver;
             this.metroLabel2.TabIndex = 2;
             this.metroLabel2.Text = "Tópico atual";
             this.metroLabel2.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -326,7 +336,7 @@
             // 
             // metroPanel5
             // 
-            this.metroPanel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.metroPanel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(196)))), ((int)(((byte)(20)))));
             this.metroPanel5.Controls.Add(this.metroPanel4);
             this.metroPanel5.HorizontalScrollbarBarColor = true;
             this.metroPanel5.HorizontalScrollbarHighlightOnWheel = false;
@@ -350,6 +360,7 @@
             this.uploadScript.Size = new System.Drawing.Size(98, 85);
             this.uploadScript.Style = MetroFramework.MetroColorStyle.Silver;
             this.uploadScript.TabIndex = 12;
+            this.uploadScript.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.uploadScript.TileImage = ((System.Drawing.Image)(resources.GetObject("uploadScript.TileImage")));
             this.uploadScript.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.uploadScript.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
@@ -380,6 +391,7 @@
             this.metroLabel4.Location = new System.Drawing.Point(698, 186);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(205, 25);
+            this.metroLabel4.Style = MetroFramework.MetroColorStyle.Yellow;
             this.metroLabel4.TabIndex = 14;
             this.metroLabel4.Text = "Velocidade (segundos)";
             this.metroLabel4.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -411,7 +423,7 @@
             this.scriptVelocity.SelectionStart = 0;
             this.scriptVelocity.ShortcutsEnabled = true;
             this.scriptVelocity.Size = new System.Drawing.Size(74, 23);
-            this.scriptVelocity.Style = MetroFramework.MetroColorStyle.Blue;
+            this.scriptVelocity.Style = MetroFramework.MetroColorStyle.Yellow;
             this.scriptVelocity.TabIndex = 15;
             this.scriptVelocity.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.scriptVelocity.UseSelectable = true;
@@ -420,6 +432,7 @@
             this.scriptVelocity.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.scriptVelocity.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.scriptVelocity.TextChanged += new System.EventHandler(this.metroTextBox1_TextChanged);
+            this.scriptVelocity.Click += new System.EventHandler(this.scriptVelocity_Click);
             // 
             // timerScript
             // 
@@ -433,16 +446,32 @@
             this.metroLabel6.Location = new System.Drawing.Point(780, 229);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(112, 15);
+            this.metroLabel6.Style = MetroFramework.MetroColorStyle.Yellow;
             this.metroLabel6.TabIndex = 16;
             this.metroLabel6.Text = "De 4 até 8 segundos";
             this.metroLabel6.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.metroLabel6.WrapToLine = true;
+            this.metroLabel6.Click += new System.EventHandler(this.metroLabel6_Click);
+            // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.metroLabel7.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel7.Location = new System.Drawing.Point(780, 258);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(114, 15);
+            this.metroLabel7.TabIndex = 19;
+            this.metroLabel7.Text = "Tecla de Pausa (ESC)";
+            this.metroLabel7.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.metroLabel7.WrapToLine = true;
             // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1136, 628);
+            this.Controls.Add(this.metroLabel7);
             this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.scriptVelocity);
             this.Controls.Add(this.metroLabel4);
@@ -460,8 +489,10 @@
             this.Name = "HomeForm";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
+            this.Style = MetroFramework.MetroColorStyle.Yellow;
             this.Text = "Script | a aguardar...";
             this.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HomeForm_FormClosed);
             this.Load += new System.EventHandler(this.HomeForm_Load);
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel3.ResumeLayout(false);
@@ -503,5 +534,6 @@
         private MetroFramework.Controls.MetroLabel labelTopic;
         private System.Windows.Forms.Timer timerScript;
         private MetroFramework.Controls.MetroLabel metroLabel6;
+        private MetroFramework.Controls.MetroLabel metroLabel7;
     }
 }

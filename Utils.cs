@@ -11,7 +11,7 @@ namespace DOPScript
         private static readonly string WEB_HABBO_LOGO_URL = "https://www.habbo.com.br/habbo-imaging/avatarimage?img_format=gif&user={0}&action=crr=6&direction=2&head_direction=2&gesture=std&size=l&headonly=1";
         private static readonly string WEB_HEADERS = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)";
         public static readonly float MIN_SPEED = 4f;
-        public static readonly float MAX_SPEED = 8f;
+        public static readonly float MAX_SPEED = 10f;
         public static async Task<(Bitmap, bool)> getHabboLogoImage(string _nickname = null)
         {
 
@@ -19,6 +19,8 @@ namespace DOPScript
             {
                 bool isValid = true;
                 Bitmap _habboImage = null;
+
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
                 webClient = new WebClient();
                 webClient.Headers

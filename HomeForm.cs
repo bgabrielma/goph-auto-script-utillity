@@ -1,5 +1,5 @@
 ﻿using DOPScript.config;
-using DOPScript.Properties;
+using GOPHScript.Properties;
 using MetroFramework;
 using MetroFramework.Controls;
 using MetroFramework.Forms;
@@ -11,6 +11,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -21,15 +22,48 @@ namespace DOPScript
         private Bitmap habboImage;
         private float currentScriptVelocityState = Utils.MIN_SPEED;
 
+
+        const int keyboardHotKeyID = 1;
+
+        // DLL libraries used to manage hotkeys
+        [DllImport("user32.dll")]
+        public static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vlc);
+        [DllImport("user32.dll")]
+        public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
         public HomeForm(Bitmap habboImage)
         {
             InitializeComponent();
+
+            //Modifier keys codes: Alt = 1, Ctrl = 2, Shift = 4, Win = 8
+            RegisterHotKey(this.Handle, keyboardHotKeyID, 0, (int)Keys.Escape);
+
             this.habboImage = habboImage;
 
             // Update habbo image component
             pictureHabboImage.Image = habboImage;
 
             labelVersion.Text = $"v{Utils.getProgramAssembleVersion()}";
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == 0x0312 && m.WParam.ToInt32() == keyboardHotKeyID)
+            {
+                ScriptPausePerformAction();
+            }
+            base.WndProc(ref m);
+        }
+
+        public void ScriptPausePerformAction()
+        {
+            if (btnPause.Enabled)
+            {
+                btnPause.PerformClick();
+                WindowState = FormWindowState.Minimized;
+                WindowState = FormWindowState.Normal;
+                MetroMessageBox.Show(this, "O script foi colocado em pausa manualmente.", "GOPH Script", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void HomeForm_Load(object sender, EventArgs e)
@@ -39,6 +73,7 @@ namespace DOPScript
         private void configure()
         {
             nickname.Text = Settings.Default.nickname;
+            // SubscribeScriptPausePerformAction();
         }
         private void Reset()
         {
@@ -157,7 +192,7 @@ namespace DOPScript
         public void updateProgress(int initialValue = 1)
         {
             Script.ScriptTopic currentScriptTopic = Script.scriptTopics[metroTopicComboBox.SelectedIndex];
-            labelProgress.Text = $"{((100 / currentScriptTopic.getTopicLines().Count) * Script.CURRENT_LINE * initialValue)} %";
+            labelProgress.Text = $"{initialValue * Math.Floor((double)(Script.CURRENT_LINE) / currentScriptTopic.getTopicLines().Count * 100) } %";
         }
 
         public void handleButtonsActionState(string mode = "disabled")
@@ -170,7 +205,7 @@ namespace DOPScript
             else if (mode == "enabled")
             {
                 btnStart.Enabled = btnPause.Enabled = true;
-                btnStart.Style = btnPause.Style = MetroColorStyle.Blue;
+                btnStart.Style = btnPause.Style = MetroColorStyle.Yellow;
             }
         }
 
@@ -217,7 +252,7 @@ namespace DOPScript
                     handleButtonsActionState();
                 } else
                 {
-                    btnStart.Style = MetroColorStyle.Blue;
+                    btnStart.Style = MetroColorStyle.Yellow;
                     btnStart.Enabled = true;
                 }
             }
@@ -229,7 +264,7 @@ namespace DOPScript
                 MetroMessageBox.Show(this, "Lembre-se de preparar o seu jogo. Deixe selecionado o balão de fala do jogo. Sempre que quiser parar o script, basta clicar no botão de parar. Mantenha sempre o jogo como foco, verificando se o seu balão de fala está selecionado e, sempre que quiser parar o script, faça-o sempre após o envio de uma frase.", $"{Settings.Default.nickname}, quase tudo pronto para começar!", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 == DialogResult.OK)
             {
-                btnPause.Style = MetroColorStyle.Blue;
+                btnPause.Style = MetroColorStyle.Yellow;
                 btnStart.Style = MetroColorStyle.Silver;
                 btnStart.Enabled = false;
                 btnPause.Enabled = true;
@@ -243,7 +278,7 @@ namespace DOPScript
         private void btnPause_Click(object sender, EventArgs e)
         {
             btnPause.Style = MetroColorStyle.Silver;
-            btnStart.Style = MetroColorStyle.Blue;
+            btnStart.Style = MetroColorStyle.Yellow;
             btnPause.Enabled = false;
             btnStart.Enabled = true;
 
@@ -292,8 +327,24 @@ namespace DOPScript
                 WindowState = FormWindowState.Normal;
                 MetroMessageBox.Show(this, $"Parabéns {Settings.Default.nickname}, este tópico foi finalizado com sucesso! Selecione o próximo para começar.", "Tópico finalizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Reset current script line
-                ResetTopic();
+                try
+                {
+                    metroTopicComboBox.SelectedIndex = metroTopicComboBox.SelectedIndex + 1;
+                }
+                catch 
+                {
+                    int numberOfTopicItems = metroTopicComboBox.Items.Count;
+
+                    if (metroTopicComboBox.SelectedIndex + 1 == numberOfTopicItems)
+                    {
+                        metroTopicComboBox.SelectedIndex = 0;
+                    }
+                }
+                finally
+                {
+                    // Reset current script line
+                    ResetTopic();
+                }
             }
         }
 
@@ -302,5 +353,21 @@ namespace DOPScript
             sendMessage();
         }
 
+        private void metroLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void scriptVelocity_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroLabel6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HomeForm_FormClosed(object sender, FormClosedEventArgs e) => UnregisterHotKey(this.Handle, keyboardHotKeyID);
     }
 }
